@@ -1,0 +1,23 @@
+        +---------------------------+
+        |     User Applications     |
+        |  (Browser, Editor, etc.)  |
+        +---------------------------+
+                    |
+                    v
+        +---------------------------+
+        |   System Call Interface   |
+        | (open, read, write, etc.) |
+        +---------------------------+
+                    |
+                    v
+        +---------------------------+
+        |           Kernel          |
+        | Processes, Memory, Files, |
+        |        Device Drivers     |
+        +---------------------------+
+                    |
+                    v
+        +---------------------------+
+        |          Hardware         |
+        | CPU, RAM, Disk, Devices   |
+        +---------------------------+
