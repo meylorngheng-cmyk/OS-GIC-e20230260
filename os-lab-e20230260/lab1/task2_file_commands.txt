@@ -1,0 +1,13 @@
+garden.txt
+rocket.txt
+This is file rocket
+This is file garden
+garden.txt
+rocket.txt
+rocket_copy.txt
+garden_renamed.txt
+rocket.txt
+rocket_copy.txt
+garden_renamed.txt
+rocket.txt
+/home/gic-heng-meylorng/oslab-work/lab1/task2_files
