@@ -1,0 +1,6 @@
+<notes/stone12.txt>
+<notes/stone1.txt>
+<notes/stone2.txt>
+<notes/stone1.txt>
+<notes/stone2.txt>
+<notes/*.txt>

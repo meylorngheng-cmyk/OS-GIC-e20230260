@@ -1,0 +1,20 @@
+Relative Path:
+From TechCorp/HR, I used:
+cat "../Legal/payroll may.txt"
+
+The .. means move up one directory from HR to TechCorp.
+Then enter Legal and read payroll may.txt.
+
+Absolute Path:
+I used:
+cat "/home/gic-heng-meylorng/oslab-work/lab2/TechCorp/Legal/payroll may.txt"
+
+The absolute path starts from the root directory (/).
+Both commands display the same report content: amount,156.
+
+Path Error:
+From TechCorp/HR, I ran:
+cat "reports/payroll may.txt"
+
+Error: cat: 'reports/payroll may.txt': No such file or directory
+Fix: ../../reports/payroll may.txt

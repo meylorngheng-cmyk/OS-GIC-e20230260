@@ -1,0 +1,17 @@
+Main process PID: 2145489
+
+Output from ps -T -C threads_observe:
+
+PID      SPID
+2145489  2145489
+2145489  2145490
+2145489  2145491
+2145489  2145492
+2145489  2145493
+
+Output from ls /proc/2145489/task:
+
+2145489  2145490  2145491  2145492  2145493
+
+Observation:
+The process has five threads: one main thread and four worker threads.

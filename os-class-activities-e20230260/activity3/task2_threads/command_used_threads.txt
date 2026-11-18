@@ -1,0 +1,4 @@
+gcc -Wall -o threads threads.c -pthread
+./threads
+gcc -Wall -o threads_mutex threads_mutex.c -pthread
+./threads_mutex
