@@ -1,0 +1,20 @@
+    printf("Receiver: message = \"%s\"\n", buffer);
+
+    mq_close(mq);
+
+    if (mq_unlink(QUEUE_NAME) == -1) {
+        perror("mq_unlink");
+        exit(EXIT_FAILURE);
+    }
+    printf("Receiver: queue unlinked.\n");
+
+    return 0;
+}
+EOF
+
+  319  # 4. Compile and run Task 4
+  320  gcc -o sender sender.c -lrt
+  321  gcc -o receiver receiver.c -lrt
+  322  ./sender
+  323  ./receiver > result-mq-ipc.txt
+  324  history | tail -n 20 > command_used_mq.txt

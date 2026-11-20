@@ -1,0 +1,23 @@
+# Task 1 — System Calls Questions
+
+**1. What is the purpose of `O_WRONLY`, `O_CREAT`, and `O_TRUNC`?**
+
+- `O_WRONLY`: Opens a file for writing only.
+- `O_CREAT`: Creates the file if it does not exist.
+- `O_TRUNC`: Clears the existing contents of a file when it is opened for writing.
+
+**2. What does the permission mode `0644` mean?**
+
+`0644` is an octal permission value. The owner can read and write (`rw-`), while the group and others can only read (`r--`). The actual permissions may also be affected by the process's `umask`.
+
+**3. What happens internally when `fopen()` is called?**
+
+`fopen()` is a C standard library function. It typically uses lower-level operating system calls, such as `open()`, to open a file. It creates a `FILE` stream and manages buffering and other stream information.
+
+**4. What is the difference between `read()` and `fgets()`?**
+
+`read()` is a POSIX system-call interface that reads a specified number of bytes from a file descriptor. `fgets()` is a C standard library function that reads characters into a string until a newline, the requested limit, or end-of-file is reached.
+
+**5. Why should a program use a loop when reading a file with `read()`?**
+
+A single `read()` call may return fewer bytes than requested. A loop allows the program to continue reading until end-of-file or an error occurs.

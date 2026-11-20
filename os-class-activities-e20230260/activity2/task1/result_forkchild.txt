@@ -1,0 +1,10 @@
+total 32
+drwxrwxr-x 2 gic-heng-meylorng gic-heng-meylorng  4096 Oct 23 16:43 .
+drwxrwxr-x 7 gic-heng-meylorng gic-heng-meylorng  4096 Oct 23 16:43 ..
+-rwxrwxr-x 1 gic-heng-meylorng gic-heng-meylorng 16392 Oct 23 16:43 forkchild
+-rw-rw-r-- 1 gic-heng-meylorng gic-heng-meylorng  1104 Oct 23 16:43 forkchild.c
+-rw-rw-r-- 1 gic-heng-meylorng gic-heng-meylorng     0 Oct 23 16:43 result_forkchild.txt
+Parent process (PID: 856317) — creating child...
+Parent: waiting for child (PID: 856319) to finish...
+Parent: child exited with status 0
+Parent: done.

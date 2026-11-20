@@ -1,0 +1,9 @@
+
+=== NEW FILE USING THE OLD NAME ===
+18752332 -rw-rw-r-- 2 gic-heng-meylorng gic-heng-meylorng 12 Nov  6 08:37 stone-final.txt
+18752332 -rw-rw-r-- 2 gic-heng-meylorng gic-heng-meylorng 12 Nov  6 08:37 stone-hard.txt
+18752388 lrwxrwxrwx 1 gic-heng-meylorng gic-heng-meylorng  9 Nov 11 10:21 stone-soft.txt -> stone.txt
+18752390 -rw-rw-r-- 1 gic-heng-meylorng gic-heng-meylorng 12 Nov 11 10:22 stone.txt
+stone.txt: version 921
+hard: version 873
+soft: version 921

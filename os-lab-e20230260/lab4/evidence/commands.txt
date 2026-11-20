@@ -1,0 +1,3 @@
+grep '^ready,' data/events.csv | tee evidence/selected.txt
+grep '^ready,' data/events.csv | cut -d, -f2 | tee evidence/fields.txt
+grep '^ready,' data/events.csv | wc -l > evidence/normal.txt

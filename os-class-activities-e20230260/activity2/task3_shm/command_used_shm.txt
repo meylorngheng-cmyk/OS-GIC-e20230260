@@ -1,0 +1,20 @@
+  283  ls -l os_layers.txt
+  284  nano os_layers.txt
+  285  cat os_layers.txt
+  286  ls -R
+  287  cd ~/os-gic-e20230260/os-class-activities-e20230260
+  288  ls -la
+  289  cd activity1
+  290  nano README.md
+  291  cat README.md
+  292  cd ~/os-gic-e20230260
+  293  git status --short
+  294  ls -R os-class-activities-e20230260
+  295  cat .gitignore
+  296  git status --short --untracked-files=all
+  297  cd ~/os-gic-e20230260/os-class-activities-e20230260/activity2/task3_shm
+  298  # Run producer and consumer again to ensure clean execution
+  299  ./shm-producer
+  300  ./shm-consumer > result-shm-ipc.txt
+  301  # Save command history for Task 3
+  302  history | tail -n 20 > command_used_shm.txt

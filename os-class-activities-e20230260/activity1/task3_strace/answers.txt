@@ -1,0 +1,21 @@
+# Task 3 — strace Questions
+
+1. What does strace do?
+
+strace traces the system calls made by a program and displays their arguments and return values. It helps us understand how a program interacts with the operating system.
+
+2. What system calls does hello_syscall use to print its message?
+
+The important system calls are write() and exit_group(). The write() call prints the message to standard output, and exit_group() ends the program.
+
+3. What system calls does copyfilesyscall use?
+
+The program uses openat() to open or create files, read() to read data, write() to copy data, and close() to close the file descriptors.
+
+4. What is the difference between the two traces?
+
+hello_syscall mainly writes a message to standard output and exits. copyfilesyscall opens a source file and a destination file, reads data from the source, writes it to the destination, and closes both files.
+
+5. Why is strace useful?
+
+strace helps developers understand program behavior, identify failed system calls, and debug problems involving files and other operating system resources.

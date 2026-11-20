@@ -1,0 +1,26 @@
+
+=== AFTER RENAME, BEFORE REPAIR ===
+18752332 -rw-rw-r-- 2 gic-heng-meylorng gic-heng-meylorng 12 Nov  6 08:37 stone-final.txt
+18752332 -rw-rw-r-- 2 gic-heng-meylorng gic-heng-meylorng 12 Nov  6 08:37 stone-hard.txt
+18752388 lrwxrwxrwx 1 gic-heng-meylorng gic-heng-meylorng  9 Nov 11 10:21 stone-soft.txt -> stone.txt
+hard: version 873
+stored target: stone.txt
+soft: cat: stone-soft.txt: No such file or directory
+
+=== AFTER REPAIR ===
+18752332 -rw-rw-r-- 2 gic-heng-meylorng gic-heng-meylorng 12 Nov  6 08:37 stone-final.txt
+18752332 -rw-rw-r-- 2 gic-heng-meylorng gic-heng-meylorng 12 Nov  6 08:37 stone-hard.txt
+18752388 lrwxrwxrwx 1 gic-heng-meylorng gic-heng-meylorng 15 Nov 11 10:23 stone-soft.txt -> stone-final.txt
+stored target: stone-final.txt
+hard: version 873
+soft: version 873
+Decision: I used a relative target because the symbolic link and its target are in the same folder. If I moved the whole folder,
+ the relative link could still work because their relationship remains the same.
+
+=== BEFORE RENAME ===
+18752332 stone.txt
+18752332 stone-hard.txt
+18752388 stone-soft.txt -> stone.txt
+hard: version 873
+soft: version 873
+stored target: stone.txt

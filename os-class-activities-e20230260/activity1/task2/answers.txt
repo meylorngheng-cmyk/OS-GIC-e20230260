@@ -1,0 +1,17 @@
+# Task 2 — Directory Listing Questions
+
+1. What is the purpose of opendir() and readdir()?
+
+opendir() opens a directory stream so the program can access its entries. readdir() reads the next entry from that directory stream.
+
+2. What does struct dirent contain?
+
+struct dirent contains information about a directory entry, including its name (d_name).
+
+3. Why must we call closedir()?
+
+closedir() closes the directory stream and releases the resources associated with it.
+
+4. How is this different from the ls command?
+
+Our program uses C functions such as opendir() and readdir() to list directory entries. The ls command is a standard Linux utility with more features, such as options for formatting, sorting, and displaying file details.
