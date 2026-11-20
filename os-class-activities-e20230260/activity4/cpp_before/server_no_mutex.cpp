@@ -53,8 +53,7 @@ int main() {
     bind(server_fd, (sockaddr*)&address, sizeof(address));
     listen(server_fd, 20);
 
-    std::cout << "C++ no-mutex server running on port "
-              << PORT << std::endl;
+    std::cout << "C++ no-mutex server running on port " << PORT << std::endl;
 
     while (true) {
         int client_socket = accept(server_fd, nullptr, nullptr);

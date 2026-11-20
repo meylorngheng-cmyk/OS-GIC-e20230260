@@ -1,118 +1,71 @@
-# Class Activity 4 — Shared File API: C++ Mutex & Java `synchronized`
-
-- **Student Name:** Meylorng
-- **Student ID:** e20230260
-- **Partner Name:** Solo work
-- **Partner Student ID:** N/A
-- **Server Machine Owner:** Student
-- **C++ Server IP:** `192.168.71.175`
-- **Java Server:** Localhost (`127.0.0.1`)
-- **Date:** November 17, 2026
-
----
-
-## Task 1: C++ Before Mutex
-
-**Expected score after 20 total client requests:** 20  
-**Actual score:** 2
-
-**What happened:**
-
-The C++ server handled multiple client requests using separate threads. However, the program did not use a mutex to protect the shared file. Several threads could read the same old score before updating it. As a result, some updates were lost, and the final score was only 2 instead of 20. This demonstrates a race condition.
-
-### Screenshots
-
-![C++ before mutex](screenshots/cpp_before_mutex.png)
-
----
-
-## Task 2: C++ After Mutex
-
-**Expected score after 20 total client requests:** 20  
-**Actual score:** 20
-
-**What changed after adding mutex:**
-
-I added `std::mutex` and `std::lock_guard<std::mutex>` to protect the score update operation. Only one thread can enter the protected section at a time. Therefore, the threads update the shared file safely without losing updates. The final score became 20.
-
-### Screenshots
-
--![C++ after mutex](screenshots/cpp_after_mutex.png)
----
-
-## Task 3: Java Before Synchronized
-
-**Expected score after 20 total client requests:** 20  
-**Actual score:** 2
-
-**What happened:**
-
-The Java server created a new thread to handle each client request. However, the `updateScore()` method did not use `synchronized`. Multiple threads could read the same score and overwrite each other's updates. Therefore, the final score was only 2 instead of 20. This demonstrates a race condition in Java.
-
-### Screenshots
-
-- ![Java before synchronized](screenshots/java_before_synchronized.png)
----
-
-## Task 4: Java After Synchronized
-
-**Expected score after 20 total client requests:** 20  
-**Actual score:** 20
-
-**What changed after adding synchronized:**
-
-I added the `synchronized` keyword to the `updateScore()` method. This allows only one thread at a time to execute the synchronized method on the same class monitor. As a result, the score updates are protected from concurrent access, and the final score is 20.
-
-**Note:** The Java synchronized server used port `19013` instead of `9012` because the original port was already occupied by another application.
-
-### Screenshots
-
--![Java after synchronized](screenshots/java_after_synchronized.png)
----
-
-## Questions
-
-### 1. Why should clients send requests to the server instead of writing the file directly?
-
-Clients should send requests to the server because the server acts as a central controller for the shared file. Only the server updates the file, which makes it easier to manage access and protect the shared resource.
-
-### 2. Why does the server still have a race condition before mutex or synchronized?
-
-The server handles multiple client requests using different threads. These threads may read and update the shared file at the same time. Without synchronization, one thread can overwrite another thread's update, causing lost updates.
-
-### 3. In the C++ fixed version, what does `std::lock_guard<std::mutex>` protect?
-
-`std::lock_guard<std::mutex>` protects the critical section where the server reads, increases, and writes the score. It automatically locks the mutex when entering the scope and unlocks it when leaving the scope.
-
-### 4. In the Java fixed version, what does `synchronized` protect?
-
-The `synchronized` keyword protects the `updateScore()` method. It ensures that only one thread at a time can execute that synchronized method using the same class monitor.
-
-### 5. Why is the final score expected to be 20 when Student A sends 10 requests and Student B sends 10 requests?
-
-The initial score is 0. Student A sends 10 requests, and Student B sends another 10 requests. Each successful request increases the score by 1.
-
-Therefore:
-
-`0 + 10 + 10 = 20`
-
-The expected final score is 20.
-
-### 6. What could happen if two separate servers update the same file at the same time?
-
-Two separate servers could access and update the same file simultaneously. Even if each server uses its own mutex or synchronized method, those synchronization mechanisms do not coordinate with the other server. This could cause race conditions and lost updates. A shared coordination mechanism, such as a database transaction or file lock, would be needed.
-
----
-
-## Reflection
-
-This activity helped me understand race conditions and the importance of synchronization when multiple threads access a shared resource.
-
-In C++, I used `std::mutex` with `std::lock_guard<std::mutex>` to protect the critical section. In Java, I used the `synchronized` keyword to prevent multiple threads from executing the protected method at the same time.
-
-Both approaches help prevent lost updates and keep the final score correct.
-
-I also learned that using a server to control a shared file does not automatically prevent race conditions. The server still needs synchronization because it can handle multiple client requests concurrently.
-
-**Testing note:** I worked individually using two simulated clients (Student A and Student B) on one laptop rather than two separate student machines. The tests demonstrated concurrent client requests to the server.
-
+Class Activity 4 — Shared File API: C++ Mutex & Java synchronized
+Student Information
+Student Name: heng meylorng
+Student ID: e20230260
+Partner: Hour samnang (e20230372)
+Server IP: 10.78.199.136
+Operating System: Ubuntu WSL
+1. Objective
+The objective of this activity is to understand race conditions when multiple clients request updates to a shared file. We compare the behavior of C++ without and with a mutex, and Java without and with the synchronized keyword.
+2. Experiment Results
+Experiment
+Port
+Expected Score
+Actual Score
+Result
+C++ Before Mutex
+9001
+20
+2
+Race condition
+C++ After Mutex
+9002
+20
+20
+Correct
+Java Before synchronized
+9011
+20
+1
+Race condition
+Java After synchronized
+9012
+20
+20
+Correct
+Each student sent 10 requests, for a total of 20 requests.
+Task 1 — C++ Before Mutex
+Without a mutex, multiple threads accessed shared_score.txt at the same time. Several threads read the same score and overwrote each other's updates.
+The expected score was 20, but the actual score was 2.
+Evidence: screenshots/cpp_before_mutex.png
+Task 2 — C++ After Mutex
+We used std::mutex and std::lock_guard<std::mutex> to protect the read-modify-write operation.
+The final score was 20, showing that all requests were counted correctly.
+Evidence: screenshots/cpp_after_mutex.png
+Task 3 — Java Before synchronized
+Without synchronization, multiple Java threads read and updated the shared file concurrently.
+The expected score was 20, but the actual score was 1 because updates were lost.
+Evidence: screenshots/java_before_synchronized.png
+Task 4 — Java After synchronized
+We added the synchronized keyword to the updateScore() method, allowing only one thread at a time to execute the method.
+The final score was 20, showing that all requests were counted correctly.
+Evidence: screenshots/java_after_synchronized.png
+3. Questions and Answers
+Q1. Why do clients send requests to the server instead of writing the shared file directly?
+The server manages access to the shared file. This allows the server to control updates and apply synchronization. If clients wrote directly to the file, they could overwrite each other's changes.
+Q2. Why can a race condition still happen on the server without mutex or synchronization?
+The server creates multiple threads to handle client requests. These threads can access the same file at the same time. Without synchronization, multiple threads may read the same old value and overwrite one another's updates.
+Q3. What does std::lock_guard<std::mutex> protect in C++?
+It protects the critical section that reads, increments, and writes the shared score. It locks the mutex when entering the section and automatically unlocks it when leaving the scope.
+Q4. What does Java synchronized protect?
+It prevents multiple threads from executing the synchronized method simultaneously on the same lock. In our program, it protects the shared score update operation.
+Q5. Why is the expected final score 20?
+Two students each send 10 increment requests. Every request should increase the score by 1, starting from 0.
+Therefore, 10 + 10 = 20.
+Q6. What happens if two separate servers update the same file simultaneously?
+A C++ mutex or Java synchronized method only coordinates threads using the same lock within one process. Two separate server processes do not share that lock, so race conditions may still happen. Cross-process file locking or another shared coordination mechanism would be required.
+4. Reflection
+This activity demonstrated how race conditions can cause lost updates when multiple threads access shared data concurrently.
+In the C++ experiment, the score increased from 2 without a mutex to 20 with a mutex.
+In the Java experiment, the score increased from 1 without synchronization to 20 with synchronized.
+We learned that synchronization is important for protecting critical sections and maintaining data consistency in multithreaded applications.

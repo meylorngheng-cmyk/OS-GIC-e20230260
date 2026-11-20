@@ -2,18 +2,17 @@
 #include <chrono>
 #include <fstream>
 #include <iostream>
-#include <mutex>
 #include <string>
 #include <thread>
 #include <unistd.h>
+#include <mutex>
 
 const int PORT = 9002;
 const std::string FILE_NAME = "shared_score.txt";
-
-std::mutex file_mutex;
+      std::mutex file_mutex;
+      std::lock_guard<std::mutex> lock(file_mutex);
 
 int update_score(const std::string& name) {
-    std::lock_guard<std::mutex> lock(file_mutex);
 
     std::ifstream input(FILE_NAME);
     int score = 0;
@@ -58,8 +57,7 @@ int main() {
     bind(server_fd, (sockaddr*)&address, sizeof(address));
     listen(server_fd, 20);
 
-    std::cout << "C++ mutex server running on port "
-              << PORT << std::endl;
+    std::cout << "C++ mutex server running on port " << PORT << std::endl;
 
     while (true) {
         int client_socket = accept(server_fd, nullptr, nullptr);
